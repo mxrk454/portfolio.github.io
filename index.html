@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark's Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            background-color: #000;
+            padding: 0.5em;
+            text-align: center;
+            width: 100%;
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            margin: 0 1em;
+            cursor: pointer;
+            transition: color 0.3s ease; /* Smooth transition for text color */
+        }
+
+        nav a:hover {
+            color: #ffcc00; /* Change the color on hover */
+        }
+
+        nav a.active {
+            font-weight: bold; /* Highlight the active section */
+            color: #ffcc00;
+        }
+
+        section {
+            padding: 2em;
+            margin-top: 80px; 
+            position: relative;
+            color: #ffffff;
+            text-align: center;
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease; 
+        }
+
+        section::before {
+            content: "";
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            opacity: 0.6; 
+            transition: opacity 0.3s ease; 
+        }
+
+        
+        .box-content {
+            background-color: rgba(255, 255, 255, 0); /* Transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.733); /* Shadow effect */
+            margin: 20px; /* Adjust margin as needed */
+            max-width: 600px; /* Set a maximum width for the box */
+            text-align:justify;
+        }
+
+        #about::before {
+            background-image: url('bg1.jpg');
+        }
+
+        #skills::before {
+            background-image: url('bg2.jpg'); 
+        }
+
+        #projects::before {
+            background-image: url('background3.jpg'); 
+        }
+
+        #contact::before {
+            background-image: url('bg3.jpg');
+        }
+
+        .overlay {
+            position: relative;
+            display: inline-block;
+            border-radius: 50%;
+            overflow: hidden;
+            width: 100px;
+            height: 100px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .overlay img:hover {
+            transform: scale(1.2); 
+        }
+
+        h2 {
+            color: #fff;
+            text-align: center;
+        }
+
+        .project {
+            margin-bottom: 2em;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            width: 100%;
+            bottom: 0;
+        }
+
+        #skills {
+            text-align: center;
+        }
+
+        .box-content {
+            background-color: rgba(255, 255, 255, 0); 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.733);
+            margin: 20px; 
+            max-width: 600px; 
+            text-align: justify;
+        }
+
+        .skills-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .icon-container {
+            width: 50px; 
+            height: 50px; 
+        }
+
+        .icon-container img {
+            width: 100%; 
+            height: 100%; 
+        }
+
+        .text-container {
+            text-align: center;
+        }
+
+        .text-container p {
+            margin-top: 0;
+        }
+
+        .percentage-bar {
+            height: 10px;
+            background-color: #3498db; 
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+
+        .icon-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100px; 
+        }
+
+        .icon-container img {
+            width: 30px; 
+            height: 30px; 
+        }
+
+        .skills-box {
+                    display: flex;
+                    justify-content: center;
+                }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px; 
+            margin: auto;
+        }
+
+        .contact-box {
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0); 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.37);
+        }
+
+        .contact-box p {
+            margin: 10px 0;
+        }
+
+        .contact-box a {
+            text-decoration: none;
+            color: #ffffff; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-box img {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mark Christian Patigayon</h1>
+        <p>BSIT 3-1</p>
+    </header>
+
+    <nav id="navbar">
+        <a onclick="scrollToSection('about')" class="nav-link">About</a>
+        <a onclick="scrollToSection('skills')" class="nav-link">Skills</a>
+        <a onclick="scrollToSection('projects')" class="nav-link">Projects</a>
+        <a onclick="scrollToSection('contact')" class="nav-link">Contact</a>
+    </nav>
+
+    <section id="about">
+        <div class="overlay">
+            <img src="images/profile.webp" alt="Profile Picture" id="profileImage"> 
+        </div>
+      
+        <div class="box-content">
+            <h2>About Me</h2>
+        <p> Greetings! I'm Mark, a 3rd-year IT student at CvSU - Bacoor, 
+            born from Imus and raised in Kawit, Cavite. Between lines of code, 
+            you'll find me cruising on my motorcycle, chasing the thrill of the open road. 
+            Balancing college life with a passion for work, I believe in earning to indulge 
+            in life's pleasures. Join me in this fast-paced journey where technology meets adventure,
+            and hard work meets self-treats.</p>
+        </div>
+    </section>
+
+
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="box-content skills-box">
+            <div class="skills-grid">
+                <div class="skill">
+                    <div class="skill-card">
+                        <div class="icon-container">
+                            <img src="images/htmlicon.png" alt="HTML Icon">
+                        </div>
+                        <div class="text-container">
+                            <p>HTML</p>
+                            <div class="percentage-bar" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-card">
+                        <div class="icon-container">
+                            <img src="images/cssicon.png" alt="CSS Icon">
+                        </div>
+                        <div class="text-container">
+                            <p>CSS</p>
+                            <div class="percentage-bar" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-card">
+                        <div class="icon-container">
+                            <img src="images/jsicon.png" alt="JavaScript Icon">
+                        </div>
+                        <div class="text-container">
+                            <p>JavaScript</p>
+                            <div class="percentage-bar" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-card">
+                        <div class="icon-container">
+                            <img src="images/pythonicon.png" alt="Python Icon">
+                        </div>
+                        <div class="text-container">
+                            <p>Python</p>
+                            <div class="percentage-bar" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-card">
+                        <div class="icon-container">
+                            <img src="images/mysqlicon.png" alt="MySQL Icon">
+                        </div>
+                        <div class="text-container">
+                            <p>MySQL</p>
+                            <div class="percentage-bar" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-card">
+                        <div class="icon-container">
+                            <img src="images/djangoicon.png" alt="Django Icon">
+                        </div>
+                        <div class="text-container">
+                            <p>Django</p>
+                            <div class="percentage-bar" style="width: 45%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+
+    <section id="projects">
+        <h2>All projects</h2>
+        <div class="project">
+            <h3>Click below</h3>
+            <p><a href="https://sites.google.com/view/markpatigayon-portfolio/about">Click me!</a></p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-box">
+            <p><a href="mailto:markpatigayon440@gmail.com"><img src="images/email.png" alt="Email Icon" width="20" height="20"> markpatigayon440@gmail.com</a></p>
+            <p><a href="tel:+09944800720"><img src="images/contact.png" alt="Phone Icon" width="20" height="20"> 09944800720</a></p>
+            <p><a href="https://www.linkedin.com/in/mark-patigayon-332709252/"><img src="images/in.png" alt="Linkedin Icon" width="20" height="20"> Linkedin</a></p>
+            <p><a href="https://www.facebook.com/xmmxrk"><img src="images/facebook.png" alt="Facebook Icon" width="20" height="20"> Facebook</a></p>
+            <p><a href="https://twitter.com/thelifeofmxrk"><img src="images/twitter.png" alt="Twitter Icon" width="20" height="20"> Twitter</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mark Christian Patigayon. All rights reserved.</p>
+    </footer>
+
+    <script>
+        window.onscroll = function() {stickyNavbar()};
+
+        var navbar = document.getElementById("navbar");
+        var sections = document.querySelectorAll("section");
+        var navLinks = document.querySelectorAll(".nav-link");
+
+        function stickyNavbar() {
+            var scrollPosition = window.scrollY;
+
+            if (scrollPosition === 0) {
+                navbar.style.backgroundColor = "transparent";
+            } else {
+                navbar.style.backgroundColor = "#000";
+            }
+
+            sections.forEach(function(section, index) {
+                var sectionTop = section.offsetTop - 0; /* Adjust for fixed header and nav */
+                var sectionBottom = sectionTop + section.clientHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    var opacity = 1 - (scrollPosition - sectionTop) / (sectionBottom - sectionTop);
+                    section.style.backgroundColor = "rgba(0, 0, 0, " + opacity + ")";
+                    section.style.transition = "background-color 0.3s ease";
+                    section.style.opacity = opacity;
+
+                    // Highlight the current section in the navbar
+                    navLinks.forEach(function(link) {
+                        link.classList.remove("active");
+                    });
+                    navLinks[index].classList.add("active");
+                }
+            });
+        }
+
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            window.scrollTo({
+                top: section.offsetTop - 80,
+                behavior: "smooth"
+            });
+        }
+    </script>
+
+</body>
+</html>
